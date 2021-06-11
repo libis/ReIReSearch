@@ -1,0 +1,974 @@
+{"reires":[
+{
+    "type":"Text",
+    "validator":"isText"
+},
+{
+    "type":"Url",
+    "validator":"isUrl"
+},
+{
+    "type": "Date",
+    "validator" : "isDate"
+},
+{
+    "type": "DateTime",
+    "validator" : "isDateTime"
+},
+{
+    "type": "Time",
+    "validator" : "isTime"
+},
+{
+    "type": "Number",
+    "validator" : "isNumber"
+},
+{
+    "type": "Integer",
+    "validator" : "isInteger"
+},
+{
+    "type": "Duration",
+    "validator" : "isDuration"
+},
+{
+    "type":"Thing",
+    "properties" : [
+      {"name":"@id",
+      "possibleTypes": [
+          {"type":"Text","storeAs":"String"},
+          {"type":"Url", "storeAs":"String"}
+      ],
+      "mandatory":true},
+      {"name":"@context",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"@type",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"name",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ],"mandatory":true
+      },
+      {"name":"alternateName",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"description",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"additionalType",
+       "possibleTypes" :[
+          {"type":"Url","storeAs":"String"},
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"image",
+       "possibleTypes" :[
+          {"type":"Url","storeAs":"String"},
+          {"type":"ImageObject","storeAs":"ImageObject", "relation":"hasImage"} 
+       ]
+      },
+      {"name":"sameAs",
+       "possibleTypes" :[
+          {"type":"Url","storeAs":"String"} 
+       ]
+      },
+      {"name":"subjectOf",
+       "possibleTypes" :[
+          {"type":"CreativeWork","storeAs":"CreativeWork","relation":"hasSubject"},
+          {"type":"Event","storeAs":"Event","relation":"hasSubject"}
+       ]
+      },
+      {"name":"url",
+       "possibleTypes" :[
+          {"type":"Url","storeAs":"String"} 
+       ]
+      },
+      {"name":"provider",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasProvider"},
+          {"type":"Organization","storeAs":"Organization","relation":"hasProvider"}
+       ]
+      },
+      {"name":"sdDatePublished",
+       "possibleTypes" :[
+          {"type":"Date","storeAs":"String"}
+       ]
+      },
+      {"name":"sdLicense",
+       "possibleTypes" :[
+          {"type":"Url","storeAs":"String"} 
+       ]
+      },
+      {"name":"sdPublisher",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasSdPublisher"},
+          {"type":"Organization","storeAs":"Organization","relation":"hasSdPublisher"}
+       ]
+      },
+      {"name":"temporal",
+        "possibleTypes" :[
+          {"type":"DateTime","storeAs":"String"},
+          {"type":"Text","storeAs":"String"}
+        ]
+      }
+   ]
+},
+{
+  "type":"CreativeWork",
+  "inherits":"Thing",
+  "properties" : [
+      {"name":"identifier",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Url","storeAs":"String"}
+       ]
+      },
+      {"name":"isPartOf",
+       "possibleTypes" :[
+          {"type":"CreativeWork","storeAs":"CreativeWork","relation":"isPartOf"},
+          {"type":"PublicationVolume","storeAs":"PublicationVolume","relation":"isPartOf"},
+          {"type":"Dataset","storeAs":"Dataset","relation":"isPartOf"},
+          {"type":"Book","storeAs":"Book","relation":"isPartOf"}
+       ]
+      },
+      {"name":"hasPart",
+       "possibleTypes" :[
+          {"type":"CreativeWork","storeAs":"CreativeWork","relation":"hasPart"}
+       ]
+      },
+      {"name":"author",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasAuthor"},
+          {"type":"Organization","storeAs":"Organization","relation":"hasAuthor"}
+       ]
+      },
+      {"name":"creator",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasCreator"},
+          {"type":"Organization","storeAs":"Organization","relation":"hasCreator"}
+       ]
+      },
+      {"name":"editor",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasEditor"}
+       ]
+      },
+      {"name":"contributor",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasContributor"},
+          {"type":"Organization","storeAs":"Organization","relation":"hasContributor"}
+       ]
+      },
+      {"name":"dateCreated",
+       "possibleTypes" :[
+          {"type":"Date","storeAs":"String"},
+          {"type":"DateTime","storeAs":"String"},
+          {"type":"Text","storeAs":"String", "_comment":"Added for ReIReS, but should not be"}
+       ]
+      },
+      {"name":"locationCreated",
+       "possibleTypes" :[
+          {"type":"Place","storeAs":"Place","relation":"isCreatedIn"}
+       ]
+      },
+      {"name":"datePublished",
+       "possibleTypes" :[
+          {"type":"Date","storeAs":"String"},
+          {"type":"Text","storeAs":"String", "_comment":"Added for ReIReS, but should not be"}
+       ]
+      },
+      {"name":"publisher",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasPublisher"},
+          {"type":"Organization","storeAs":"Organization","relation":"hasPublisher"}
+       ]
+      },
+      {"name":"inLanguage",
+       "possibleTypes" :[
+          {"type":"Language","storeAs":"Language","relation":"inLanguage"},
+          {"type":"Text","storeAs":"String"}
+       ]
+      },
+      {"name":"genre",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Url","storeAs":"String"}
+       ]
+      },
+      {"name":"keywords",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"contentLocation",
+       "possibleTypes" :[
+          {"type":"Place","storeAs":"Place"}
+       ]
+      },
+      {"name":"spatialCoverage",
+       "possibleTypes" :[
+          {"type":"Place","storeAs":"Place"}
+       ]
+      },
+      {"name":"temporalCoverage",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Url","storeAs":"String"},
+          {"type":"DateTime","storeAs":"String"}
+       ]
+      },
+      {"name":"mentions",
+       "possibleTypes" :[
+          {"type":"Thing","storeAs":"Thing","relation":"hasMentions"}
+       ]
+      },
+      {"name":"associatedMedia",
+       "possibleTypes" :[
+          {"type":"MediaObject","storeAs":"MediaObject","relation":"hasAssociatedMedia"}
+       ]
+      },
+      {"name":"thumbnailUrl",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"license",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"copyrightHolder",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasCopyrightHolder"},
+          {"type":"Organization","storeAs":"Organization","relation":"hasCopyrightHolder"}
+       ]
+      },
+      {"name":"copyrightYear",
+       "possibleTypes" :[
+          {"type":"Number","storeAs":"Number"} 
+       ]
+      },
+      {"name":"material",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Url","storeAs":"String"}
+       ]
+      },
+      {"name":"review",
+       "possibleTypes" :[
+          {"type":"Review","storeAs":"Review","relation":"hasReview"}
+       ]
+      },
+      {"name":"itemReviewed",
+       "possibleTypes" :[
+          {"type":"Thing","storeAs":"Thing","relation":"isReviewOf"}
+       ]
+      },
+      {"name":"text",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"translationOfWork",
+       "possibleTypes" :[
+          {"type":"CreativeWork","storeAs":"CreativeWork","relation":"isTranslationOf"}
+       ]
+      },
+      {"name":"workTranslation",
+       "possibleTypes" :[
+          {"type":"CreativeWork","storeAs":"CreativeWork","relation":"isTranslatedTo"}
+       ]
+      },
+      {"name":"translator",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"isTranslatedBy"},
+          {"type":"Organization","storeAs":"Organization","relation":"isTranslatedBy"}
+       ]
+      },
+      {"name":"bookEdition",
+      "possibleTypes":[
+        {"type":"Text","storeAs":"String"}    
+      ]
+      },
+      {"name":"version",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Number","storeAs":"Number"}
+       ]
+      },
+      {"name":"isBasedOn",
+       "possibleTypes" :[
+          {"type":"CreativeWork","storeAs":"CreativeWork", "relation":"isBasedOn"}
+       ]
+      }
+  ]
+}
+,
+{
+ "type": "Role",
+ "inherits": "Thing",
+ "properties": [
+     {
+       "name":"name",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"}
+       ],"mandatory":false
+     },
+
+     {
+       "name": "memberOf",
+       "possibleTypes": [
+          {"type": "Organization","storeAs": "Organization","relation": "isMemberOf"}
+       ]
+     },
+     {
+       "name": "startDate",
+       "possibleTypes": [
+          {"type": "Date","storeAs": "String"},
+          {"type": "DateTime","storeAs": "String"},
+          {"type": "Text","storeAs": "String","_comment": "added for ReIReS, but should not be this way"}
+       ]
+     },
+     {
+       "name": "endDate",
+       "possibleTypes": [
+          {"type": "Date","storeAs": "String"},
+          {"type": "DateTime","storeAs": "String"},
+          {"type": "Text","storeAs": "String","_comment": "added for ReIReS, but should not be this way"}
+       ]
+      },
+      {
+        "name": "roleName",
+        "possibleTypes": [
+           {"type": "Text","storeAs": "String"}
+       ]
+      }
+   ]
+ }
+,
+{
+  "type":"Person",
+  "inherits":"Thing",
+  "properties":[
+      {"name":"familyName",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"givenName",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"additionalName",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"honorificPrefix",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"honorificSuffix",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"affiliation",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"isAffilitedWith"}
+       ]
+      },
+      {"name":"worksFor",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"worksFor"}
+       ]
+      },
+      {"name":"hasOccupation",
+       "possibleTypes" :[
+          {"type":"Occupation","storeAs":"Occupation","relation":"hasOccupation"}
+       ]
+      },
+      {"name":"jobTitle",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ]
+      },
+      {"name":"birthDate",
+       "possibleTypes" :[
+          {"type":"Date","storeAs":"String"},
+          {"type":"Text","storeAs":"String", "_comment":"Added for ReIReS, but should not be"}       ]
+      },
+      {"name":"birthPlace",
+       "possibleTypes" :[
+          {"type":"Place","storeAs":"Place","relation":"bornIn"} 
+       ]
+      },
+      {"name":"deathDate",
+       "possibleTypes" :[
+          {"type":"Date","storeAs":"String"},
+          {"type":"Text","storeAs":"String", "_comment":"Added for ReIReS, but should not be"} 
+       ]
+      },
+      {"name":"deathPlace",
+       "possibleTypes" :[
+          {"type":"Place","storeAs":"Place","relation":"diedIn"} 
+       ]
+      },
+      {"name":"gender",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"},
+          {"type":"GenderType","storeAs":"GenderType","relation":"hasGender"}
+       ]
+      },
+      {"name":"nationality",
+       "possibleTypes" :[
+          {"type":"Country","storeAs":"Country","relation":"hasNationality"}
+       ]
+      },
+      {"name":"parent",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasParent"}
+       ]
+      },
+      {"name":"children",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasChild"}
+       ]
+      },
+      {"name":"relatedTo",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"isRelatedTo"}
+       ]
+      },
+      {"name":"sibling",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasSibling"}
+       ]
+      },
+      {"name":"spouse",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"isMarriedTo"}
+       ]
+      },
+      {"name":"colleague",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"isColleagueOf"},
+          {"type":"Url","storeAs":"String"}
+       ]
+      },
+      {"name":"follows",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"follows"}
+       ]
+      },
+      {"name":"knows",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"knows"}
+       ]
+      },
+      {"name":"memberOf",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"isMemberOf"},
+          {"type": "Role","storeAs": "Role","relation": "isMemberOf"}
+       ]
+      },
+      {"name":"funder",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"funds"},
+          {"type":"Person","storeAs":"Person","relation":"funds"}
+       ]
+      },
+      {"name":"sponsor",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"sponsors"},
+          {"type":"Person","storeAs":"Person","relation":"sponsors"}
+       ]
+      },
+      {"name":"alumniOf",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"isAlumniOf"},
+          {"type":"EducationalOrganization","storeAs":"EducationalOrganization","relation":"isAlumniOf"}
+       ]
+      }
+  ]
+}
+,
+{
+  "type":"Organization",
+  "inherits": "Thing",
+  "properties" : [
+      {"name":"department",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"isDepartmentOf"}
+       ]
+      },
+      {"name":"parentOrganization",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"hasParentOrganization"}
+       ]
+      },
+      {"name":"subOrganization",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"hasSubOrganization"}
+       ]
+      },
+      {"name":"location",
+       "possibleTypes" :[
+          {"type":"Place","storeAs":"Place","relation":"hasLocation"},
+          {"type":"Text","storeAs":"String"}
+       ]
+      },
+      {"name":"logo",
+       "possibleTypes" :[
+          {"type":"Url","storeAs":"String"},
+          {"type":"ImageObject","storeAs":"ImageObject", "relation":"hasLogo"} 
+       ]
+      },
+      {"name":"founder",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"isFoundedBy"}
+       ]
+      },
+      {"name":"foundingDate",
+       "possibleTypes" :[
+          {"type":"Date","storeAs":"String"} 
+       ]
+      },
+      {"name":"foundingLocation",
+       "possibleTypes" :[
+          {"type":"Place","storeAs":"Place","relation":"isFoundedIn"}
+       ]
+      },
+      {"name":"funder",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"isFundedBy"},
+          {"type":"Person","storeAs":"Person","relation":"isFundedBy"}
+       ]
+      },
+      {"name":"member",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"hasMember"},
+          {"type":"Person","storeAs":"Person","relation":"hasMember"}
+       ]
+      },
+      {"name":"memberOf",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"isMemberOf"}
+       ]
+      },
+      {"name":"sponsor",
+       "possibleTypes" :[
+          {"type":"Organization","storeAs":"Organization","relation":"isSponsoredBy"},
+          {"type":"Person","storeAs":"Person","relation":"isSponsoredBy"}
+       ]
+      },
+      {"name":"alumni",
+       "possibleTypes" :[
+          {"type":"Person","storeAs":"Person","relation":"hasAlumni"}
+       ]
+      }
+  ]    
+}
+,
+{
+  "type":"Place",
+  "inherits" : "Thing",
+  "properties" : [
+      {"name":"address",
+       "possibleTypes" :[
+          {"type":"PostalAddress","storeAs":"PostalAddress","relation":"hasAddress"},
+          {"type":"Text","storeAs":"String"}
+       ]
+      },
+      {"name":"geo",
+       "possibleTypes" :[
+          {"type":"GeoCoordinates","storeAs":"GeoCoordinates","relation":"hasGeoCoordinates"},
+          {"type":"GeoShape","storeAs":"GeoShape","relation":"hasGeoShape"}
+       ]
+      },
+      {"name":"hasMap",
+       "possibleTypes" :[
+          {"type":"Url","storeAs":"String"}
+       ]
+      }
+  ]   
+}
+,
+{
+  "type":"Language",
+  "inherits" : "Thing"    
+}
+,
+{
+  "type":"Event",
+  "inherits" : "Thing",
+  "properties" : [
+      {"name":"about",
+       "possibleTypes" :[
+          {"type":"Thing","storeAs":"Thing", "relation":"isAbout"}
+       ]
+      },
+      {"name":"startDate",
+       "possibleTypes" :[
+          {"type":"Date","storeAs":"String"},
+          {"type":"DateTime","storeAs":"String"},
+          {"type":"Text","storeAs":"String", "_comment":"added for ReIReS, but should not be this way"}
+       ]
+      },
+      {"name":"endDate",
+       "possibleTypes" :[
+          {"type":"Date","storeAs":"String"},
+          {"type":"DateTime","storeAs":"String"},
+          {"type":"Text","storeAs":"String", "_comment":"added for ReIReS, but should not be this way"}
+       ]
+      },
+      {"name":"location",
+       "possibleTypes" :[
+          {"type":"Place","storeAs":"Place","relation":"takesPlaceIn"},
+          {"type":"Text","storeAs":"String"}
+       ]
+      }
+  ]
+}
+,
+{
+  "type":"PublicationEvent",
+  "inherits" : "Event"
+}
+,
+{
+  "type":"MediaObject",
+  "inherits" : "CreativeWork",
+  "properties" : [
+      {"name":"name",
+       "possibleTypes" :[
+          {"type":"Text","storeAs":"String"} 
+       ],"mandatory":false
+      },
+      {"name" :"contentUrl",
+        "possibleTypes" :[
+          {"type":"Url","storeAs":"String"}
+        ]
+      },
+      {"name" :"embedUrl",
+       "possibleTypes" :[
+          {"type":"Url","storeAs":"String"}
+       ]
+      },
+      {"name" :"encodingFormat",
+       "possibleTypes" :[
+          {"type":"Url","storeAs":"String"},
+          {"type":"Text","storeAs":"String"}
+       ]
+      }      
+  ]    
+}
+,
+{
+  "type":"ImageObject",
+  "inherits" : "MediaObject"
+}
+,
+{
+  "type":"VideObject",    
+  "inherits" : "MediaObject",
+  "properties" : [
+      {"name":"transcript",
+      "possibleTypes": [
+          {"type":"Text","storeAs":"String"}
+      ]
+      }
+  ]
+}
+,
+{
+  "type":"AudioObject",
+  "inherits" : "MediaObject",
+  "properties" : [
+      {"name":"transcript",
+      "possibleTypes": [
+          {"type":"Text","storeAs":"String"}
+      ]
+      }
+  ]
+}
+,
+{
+  "type":"Dataset",
+  "inherits" : "CreativeWork",
+  "properties" : [
+      {"name":"distribution",
+      "possibleTypes":[
+        {"type":"DataDownload","storeAs":"DataDownload","relation":"hasDataDownload"}          
+      ]
+      },
+      {"name":"includedInDataCatalog",
+      "possibleTypes":[
+        {"type":"DataCatalog","storeAs":"DataCatalog","relation":"isIncludedInDataCatalog"}          
+      ]
+      }
+  ]
+}
+,
+{
+  "type":"DataDownload",    
+  "inherits":"MediaObject"
+}
+,
+{
+  "type":"DataCatalog",    
+  "inherits":"CreativeWork",
+  "properties" : [
+      {"name":"dataset",
+      "possibleTypes" : [
+        {"type":"Dataset","storeAs":"Dataset","relation":"hasDataset"}    
+      ]
+      }
+  ]
+}
+,
+{
+  "type":"Article",
+  "inherits":"CreativeWork",
+  "properties": [
+      {"name":"pagination",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"}
+      ]
+      },
+      {"name":"pageStart",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Integer","storeAs":"Integer"}
+      ]
+      },
+      {"name":"pageEnd",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Integer","storeAs":"Integer"}
+      ]
+      },
+      {"name":"articleBody",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"}
+      ]
+      }
+  ]    
+}
+,
+{
+  "type":"PublicationIssue",
+  "inherits":"CreativeWork",
+  "properties": [
+      {"name":"pagination",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"}
+      ]
+      },
+      {"name":"pageStart",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Integer","storeAs":"Integer"}
+      ]
+      },
+      {"name":"pageEnd",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Integer","storeAs":"Integer"}
+      ]
+      },
+      {"name":"issueNumber",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Integer","storeAs":"Integer"}
+      ]
+      }
+  ]    
+}
+,
+{
+  "type":"PublicationVolume",
+  "inherits":"CreativeWork",
+  "properties": [
+      {"name":"pagination",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"}
+      ]
+      },
+      {"name":"pageStart",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Integer","storeAs":"Integer"}
+      ]
+      },
+      {"name":"pageEnd",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Integer","storeAs":"Integer"}
+      ]
+      },
+      {"name":"volumeNumber",
+      "possibleTypes":[
+          {"type":"Text","storeAs":"String"},
+          {"type":"Integer","storeAs":"Integer"}
+      ]
+      }
+  ]    
+}
+,
+{
+  "type":"Book",
+  "inherits":"CreativeWork",
+  "properties":[
+      {"name":"isbn",
+      "possibleTypes":[
+        {"type":"Text","storeAs":"String"}    
+      ]
+      },
+      {"name":"illustrator",
+      "possibleTypes":[
+        {"type":"Person","storeAs":"Person","relation":"hasIllustrator"}    
+      ]
+      },
+      {"name":"numberOfPages",
+      "possibleTypes":[
+          {"type":"Integer","storeAs":"Integer"}
+      ]
+      }
+  ]
+}
+,
+{
+  "type":"CreativeWorkSeries",
+  "inherits":"CreativeWork",
+  "properties": [
+      {"name":"startDate",
+      "possibleTypes":[
+          {"type":"Date", "storeAs":"String"},
+          {"type":"DateTime", "storeAs":"String"}
+      ]
+      },
+      {"name":"endDate",
+      "possibleTypes":[
+          {"type":"Date", "storeAs":"String"},
+          {"type":"DateTime", "storeAs":"String"}
+      ]
+      },
+      {"name":"issn",
+      "possibleTypes":[
+        {"type":"Text","storeAs":"String"}    
+      ]
+      }
+  ]    
+}
+,
+{
+  "type":"Review",
+  "inherits":"CreativeWork" 
+}
+,
+{
+  "type":"Collection",
+  "inherits":"CreativeWork" 
+}
+,
+{
+  "type":"Occupation",
+  "inherits":"Thing"
+}
+,
+{
+  "type":"GenderType",
+  "inherits":"Thing"   
+}
+,
+{
+  "type":"Country",  
+  "inherits":"Thing"  
+}
+,
+{ 
+  "type" : "EducationalOrganization",
+  "inherits":"Organization"
+}
+,
+{ 
+  "type" : "PostalAddress",
+  "inherits" : "Thing",
+  "properties": [
+      {"name":"addressCountry",
+      "possibleTypes":  [
+        {"type":"Text","storeAs":"String"}    
+      ]
+      },
+      {"name":"postalCode",
+      "possibleTypes":  [
+        {"type":"Text","storeAs":"String"}    
+      ]
+      },
+      {"name":"streetAddress",
+      "possibleTypes":  [
+        {"type":"Text","storeAs":"String"}    
+      ]
+      }
+  ]
+}
+,
+{ 
+  "type" : "GeoCoordinates",
+  "inherits" : "Thing",
+  "properties" : [
+      {"name":"longitude",
+      "possibleTypes": [
+          {"type":"Number","storeAs":"Number"},
+          {"type":"Text","storeAs":"String"}
+      ] 
+      },
+      {"name":"latitude",
+      "possibleTypes": [
+          {"type":"Number","storeAs":"Number"},
+          {"type":"Text","storeAs":"String"}
+      ] 
+      }
+  ]
+}
+,
+{ 
+  "type" : "GeoShape",
+  "inherits":"Thing",
+  "properties": [
+      {"name":"box",
+      "possibleTypes": [
+          {"type":"Text","storeAs":"String"}
+      ] 
+      },
+      {"name":"circle",
+      "possibleTypes": [
+          {"type":"Text","storeAs":"String"}
+      ] 
+      },
+      {"name":"line",
+      "possibleTypes": [
+          {"type":"Text","storeAs":"String"}
+      ] 
+      },
+      {"name":"polygon",
+      "possibleTypes": [
+          {"type":"Text","storeAs":"String"}
+      ] 
+      }
+  ]
+}
+]}

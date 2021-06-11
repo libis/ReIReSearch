@@ -1,0 +1,20 @@
+version: '3'
+services:
+  data_importor:
+    container_name: data_importor_container
+    image: data_importor_image
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    command: >
+      sh -c "cd /app
+             tail -f /dev/null"
+    networks: 
+      - data_collector_network
+    volumes:
+      - ./src:/app/src
+      - ./datain:/app/datain
+      - ./dataout:/app/dataout
+networks:
+  data_collector_network:
+    driver: bridge
