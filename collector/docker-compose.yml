@@ -1,0 +1,20 @@
+version: '3'
+services:
+  data_collector:
+    container_name: data_collector_container
+    image: data_collector_image
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    command: >
+      sh -c "cd /app
+             tail -f /dev/null"
+    networks: 
+      - data_collector_network
+    volumes:
+      - ./src:/app/src
+      - ./records:/app/records
+      - ./source_records:/app/source_records
+networks:
+  data_collector_network:
+    driver: bridge

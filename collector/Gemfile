@@ -1,0 +1,17 @@
+source "https://rubygems.org"
+
+gem 'http'
+gem 'mime-types'
+gem 'nokogiri'
+gem 'nori'
+gem 'json'
+gem 'jsonpath', ' 1.0.4'
+gem 'activesupport'
+gem 'minitar'
+gem 'oai'
+gem 'iso639'
+gem 'unicode'
+gem 'unicode-scripts'
+gem 'net-sftp'
+gem 'xml_split'
+gem 'mdb'

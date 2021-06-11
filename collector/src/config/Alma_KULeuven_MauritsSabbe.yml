@@ -1,0 +1,12 @@
+---
+:repository_type: sftp
+:file_type: tar.gz
+:sftp_url: example.com
+:sftp_dir: "/path/"
+:sftp_delete_url:  example.com
+:user: example_user
+:password: example_password
+:full_export: false
+:source_record_dir: KULeuven/MauritsSabbe
+:last_run_updates: '2020-12-14T11:28:45+01:00'
+:last_run_deletes: '2020-12-14T11:28:45+01:00'
