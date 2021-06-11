@@ -1,0 +1,27 @@
+---
+:es_version: 7.3.0
+:es_url: http://elastic0:9200
+:es_cluster: reires
+:es_index: reires_test
+:es_pipeline_id: fix_reires_data
+:log_es_client: true
+:log_file: "./logs/es_loader_test.log"
+:load_type: update
+:max_records_per_file: 300
+:last_run_updates: '2021-03-19 09:35:37 +0000'
+:record_dirs_to_load:
+- "Alma_KULeuven/**/"
+- "Cyrillomethodiana/**/"
+- "DHGE/**/"
+- "FSCIRE_Mansi/**/"
+- "JGU_Mainz/**/"
+- "Klerus_Datenbank/**/"
+:record_pattern: !ruby/regexp /.*(_BOOK|_PUBLICATIONISSUE|_PUBLICATIONVOLUME|KLERUS_[0-9]{9}_PERSON.*|_ARTICLE|_EVENT)\.json/
+:import_mappings: "/elastic/mappings.json"
+:import_settings: "/elastic/settings.json"
+:import_pipeline: "/elastic/pipeline.json"
+:audit:
+  :mailfrom: reires@example.com
+  :mailto: admin@example.com
+
+

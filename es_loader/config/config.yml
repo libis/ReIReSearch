@@ -1,0 +1,21 @@
+---
+:es_version: 7.3.0
+:es_url: "http://example_url:9200"
+:es_cluster: reires
+:es_index: 'reires'
+:es_pipeline_id: fix_reires_data
+:log_es_client: true
+:log_file: "./logs/es_loader.log"
+:load_type: update
+:max_records_per_file: 300
+:last_run_updates: '2020-01-01 00:00:00 +0000'
+:record_dirs_to_load:
+- "/**/"
+:record_pattern: !ruby/regexp /.*\.json/
+:import_mappings: "/elastic/mappings.json"
+:import_settings: "/elastic/settings.json"
+:import_pipeline: "/elastic/pipeline.json"
+:audit:
+  :mailfrom: reires@example.com
+  :mailto: adminn@example.com
+

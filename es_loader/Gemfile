@@ -1,0 +1,6 @@
+source "https://rubygems.org"
+
+gem 'json' 
+# gem 'elasticsearch', '>=7.3.0'
+gem 'elasticsearch', '7.3.0'
+gem 'slop', '4.8.1'

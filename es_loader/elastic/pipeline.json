@@ -1,0 +1,24 @@
+{
+  "processors": [{
+      "split": {
+        "field": "inLanguage",
+        "separator": ",\\s*",
+        "ignore_missing": true
+      }
+    }
+    /*
+    ,
+    {
+      "script": {
+        "id": "dateRangePublished"
+      }
+    }
+    */
+  ]
+}
+
+
+/* *******
+  Making birthdate and deathdate liveperiode ???
+  Making dateCreated => array of years ???
+*************** */

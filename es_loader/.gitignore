@@ -1,0 +1,5 @@
+records/*
+logs/*
+elastic/import/*
+notes.txt
+*.tar

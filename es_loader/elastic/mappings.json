@@ -1,0 +1,249 @@
+{
+  "dynamic_templates": [
+    {
+      "keyword_no_index_fields": {
+        "match_pattern": "regex",
+        "match": "^@id$|^@type$|^@schema$",
+        "mapping": {
+          "type": "keyword",
+          "index": false
+        }
+      }
+    },
+    {
+      "keyword_fields": {
+        "match_pattern": "regex",
+        "match": "^identifier$|^ISSN$|^ISBN$",
+        "mapping": {
+          "type": "keyword"
+        }
+      }
+    },
+    {
+      "inLanguage": {
+        "match": "inLanguage",
+        "mapping": {
+          "type": "keyword"
+        }
+      }
+    },
+    {
+      "provider_fields": {
+        "path_match": "provider.name",
+        "mapping": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title_field": {
+        "path_match": "name.@value",
+        "mapping": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name_field": {
+        "path_match": "*.name.@value",
+        "mapping": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    },
+    {
+      "author_contributors_familyName_ignore_above_1024": {
+        "path_match": "*.familyName.@value",
+        "mapping": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 1024
+            }
+          }
+        }
+      }
+    },
+    {
+      "author_contributors_givenName_ignore_above_1024": {
+        "path_match": "*.givenName.@value",
+        "mapping": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 1024
+            }
+          }
+        }
+      }
+    },
+    {
+      "datePublished_fields": {
+        "path_match": "datePublished*",
+        "mapping": {
+          "type": "date",
+          "ignore_malformed": true,
+          "format": "yyyy"
+        }
+      }
+    },
+    {
+      "date_fields": {
+        "match": "sdDatePublished",
+        "mapping": {
+          "type": "date",
+          "ignore_malformed": true,
+          "format": "yyyy-mm-dd"
+        }
+      }
+    },
+    {
+      "person_date_fields": {
+        "match_pattern": "regex",
+        "match": "^deathDate$|^birthDate$",
+        "mapping": {
+          "type": "date",
+          "ignore_malformed": true,
+          "format": "yyyy-mm-dd"
+        }
+      }
+    },
+    {
+      "text_keyword_fields": {
+        "match_pattern": "regex",
+        "match": "^url$|^sameAs$",
+        "mapping": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        }
+      }
+    },
+    {
+      "@language_fields": {
+        "match": "@language",
+        "mapping": {
+          "type": "keyword",
+          "index": false,
+          "copy_to": "@language"
+        }
+      }
+    },
+    {
+      "disabled_fields": {
+        "match_pattern": "regex",
+        "match": "^numberOfPages$|^volumeNumber$|^pagination$",
+        "mapping": {
+          "enable": false
+        }
+      }
+    },
+    {
+      "disabled_context": {
+        "path_match": "*@context*",
+        "mapping": {
+          "enable": false
+        }
+      }
+    },
+    {
+      "disabled_sdPublisher": {
+        "match_pattern": "regex",
+        "match": "sdPublisher*",
+        "mapping": {
+          "type": "object",
+          "enable": false
+        }
+      }
+    },
+    {
+      "disabled_sdLicense": {
+        "match_pattern": "regex",
+        "match": "sdLicense*",
+        "mapping": {
+          "enable": false
+        }
+      }
+    },
+
+    {
+      "date_fields": {
+        "match": "date*",
+        "mapping": {
+          "type": "keyword"
+        }
+      }
+    },
+    {
+      "full_text_fields": {
+        "match_pattern": "regex",
+        "match": "^@about$|^description.@value$",
+        "mapping": {
+          "type": "text"
+        }
+      }
+    }
+  ],
+  "properties": {
+    "alternateName": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "datePublished_time_frame": {
+      "type": "date_range",
+      "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||yyyy||epoch_millis"
+    },
+    "dateCreated_time_frame": {
+      "type": "date_range",
+      "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||yyyy||epoch_millis"
+    },
+    "isPartOf": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "keyword",
+          "ignore_above": 256
+        },
+        "@id": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "associatedMedia": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    }
+  }
+}

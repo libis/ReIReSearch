@@ -1,0 +1,87 @@
+PUT _scripts/dateRangePublished
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+    String parseDate(String s, char i) {
+      String r;
+      for ( char c : s.toUpperCase().toCharArray() ) {
+       
+        if ( c == (char)"X" || c == (char)"U" || c == (char)"?"  ){
+          r = ( (r == null) ? i : r + i );  
+        }else{
+          r = ( (r == null) ? c : r + c );  
+        }
+       }
+      return r;
+    }
+
+    if(ctx.datePublished != null){
+      def datePublished = null;
+      if ( ctx.datePublished  instanceof List  ) {
+        if ( ctx.datePublished[0] != null ){
+         datePublished = ctx.datePublished[0].toUpperCase();
+        }
+      }else{
+        datePublished = ctx.datePublished.toUpperCase();
+      }
+      if (datePublished != null) {
+        String fromyear;
+        String tillyear;
+      
+        if (datePublished ==~ /^[0-9UX?]{4}-[0-9UX?]{4}$/) {
+           fromyear = parseDate( datePublished.substring(0, 4), (char)"0");
+           tillyear = parseDate( datePublished.substring(5, 9), (char)"9");
+        }
+        
+        if (datePublished ==~ /^[0-9UX?]{4}$/) {
+           fromyear = parseDate( datePublished.substring(0, 4), (char)"0");
+           tillyear = parseDate( datePublished.substring(0, 4), (char)"9");
+        }
+        if (fromyear != null && tillyear != null){
+          def datePublished_time_frame = ["gte": "0000"];
+          datePublished_time_frame.gte = fromyear;
+          datePublished_time_frame.lte = tillyear;
+          ctx.datePublished_time_frame = datePublished_time_frame ;  
+        }
+      
+      }
+    }            
+  """
+  }
+}
+
+// Retrieve all stored_scripts
+// GET _cluster/state/metadata?filter_path=metadata.stored_scripts
+// Stored scripts zitten dus op cluster niveau
+
+
+PUT _scripts/isPartOfToDataset
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+if (ctx.isPartOf instanceof List) {
+  for(int i=0; i<ctx.isPartOf.length; i++) { 
+     def m = /^REIRES_Dataset_.*/.matcher(ctx.isPartOf[i]['@id']);
+     if ( m.matches() && ctx.isPartOf[i]['@type'] == \"Dataset\"){
+         if(	ctx.ReIReS_dataset == null) { 
+             ctx.ReIReS_dataset = [ctx.isPartOf[i].name];
+         }else{
+             ctx.ReIReS_dataset.add( ctx.isPartOf[i].name );
+         }
+      }
+  }
+}else{
+  def m = /^REIRES_Dataset_.*/.matcher(ctx.isPartOf['@id']);
+     if ( m.matches() && ctx.isPartOf['@type'] == \"Dataset\"){
+         if(	ctx.ReIReS_dataset == null) { 
+             ctx.ReIReS_dataset = [ctx.isPartOf.name];
+         }else{
+             ctx.ReIReS_dataset.add( ctx.isPartOf.name );
+         }
+      }
+}
+"""
+}
+}

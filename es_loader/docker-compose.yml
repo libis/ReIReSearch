@@ -1,0 +1,26 @@
+version: '3'
+services:
+  elastic_bulk_collector:
+    container_name: es_loader_container
+    image: es_loader_image
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    command: >
+      sh -c "cd /app
+             tail -f /dev/null"
+    networks: 
+      - admin_network
+    volumes:
+      - ./src/:/app/src
+      - ./records/:/records
+      - ./elastic/:/elastic
+      - ./config/:/app/config
+      - ./logs/:/app/logs
+
+#Docker Networks
+networks:
+  admin_network:
+    external:
+      name: admin_network
+
