@@ -1,0 +1,200 @@
+
+version: '3'
+
+networks:
+  http_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.30.0.0/16
+    driver_opts:
+      com.docker.network.bridge.name: docker_http
+  admin_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.40.0.0/16
+    driver_opts:
+      com.docker.network.bridge.name: docker_admin
+      com.docker.network.bridge.enable_icc: 1
+      com.docker.network.bridge.enable_ip_masquerade: 1
+services:
+  agensgraph:
+    image: bitnine/agensgraph:v2.1.0
+    ports:
+      - "5432:5432"
+    command: bash
+    stdin_open: true
+    tty: true
+    networks:
+      - admin_network
+    restart: on-failure
+    volumes:
+      - './agensgraph/data:/home/agens/AgensGraph/data:rw'
+    environment:
+      TERM: xterm
+
+  elastic0:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.0
+    ports:
+      - 9200:9200
+    environment:
+      - cluster.name=libis-reires
+      - node.name=ReIRes_es01
+      - cluster.initial_master_nodes=ReIRes_es01,ReIRes_es02
+      - discovery.seed_hosts=elastic1
+      - bootstrap.memory_lock=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - script.painless.regex.enabled=true
+      - cluster.routing.allocation.disk.watermark.low=100gb
+      - cluster.routing.allocation.disk.watermark.high=50gb
+      - cluster.routing.allocation.disk.watermark.flood_stage=10gb
+      - cluster.info.update.interval=1m
+#      - node.master=true
+#      - node.data=false
+#      - node.ingest=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - admin_network
+    restart: on-failure
+    volumes:
+      - ./volumes/elastic/data/es0:/usr/share/elasticsearch/data
+  elastic1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.0
+    environment:
+      - cluster.name=libis-reires
+      - node.name=ReIRes_es02
+      - cluster.initial_master_nodes=ReIRes_es01,ReIRes_es02
+      - bootstrap.memory_lock=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - script.painless.regex.enabled=true
+      - discovery.seed_hosts=elastic0
+      - cluster.routing.allocation.disk.watermark.low=100gb
+      - cluster.routing.allocation.disk.watermark.high=50gb
+      - cluster.routing.allocation.disk.watermark.flood_stage=10gb
+      - cluster.info.update.interval=1m
+#      - "discovery.zen.ping.unicast.hosts=elastic0"
+#      - node.master=false
+#      - node.data=true
+#      - node.ingest=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - admin_network
+    depends_on:
+      - elastic0
+    restart: on-failure
+    volumes:
+      - ./volumes/elastic/data/es1:/usr/share/elasticsearch/data
+
+  data_collector:
+    container_name: data_collector_container
+    image: data_collector_image
+    build: 
+      context: ./collector/
+      dockerfile: Dockerfile
+    networks: 
+      - admin_network
+    volumes:
+      - ./collector/src:/app/src
+      - ./collector/records:/app/records
+      - ./collector/source_records:/app/source_records
+  agensgraph_loader:
+    container_name: agensgraph_loader_container
+    image: agensgraph_loader_image
+    build: 
+      context: ./agensgraph_loader/
+      dockerfile: Dockerfile
+    networks: 
+      - admin_network
+    volumes:
+      - ./agensgraph_loader/src:/app/src
+      - ./agensgraph_loader/datain:/app/datain
+      - ./agensgraph_loader/dataout:/app/dataout   
+    depends_on:
+      - agensgraph
+  es_loader:
+    container_name: es_loader_container
+    image: es_loader_image
+    build: 
+      context: ./es_loader/
+      dockerfile: Dockerfile
+    networks: 
+      - admin_network
+    volumes:
+      - ./es_loader/src/:/app/src
+      - ./es_loader/records/:/records
+      - ./es_loader/elastic/:/elastic
+      - ./es_loader/config/:/app/config
+      - ./es_loader/logs/:/app/logs
+    depends_on:
+      - elastic0
+      - elastic1
+    links:
+      - elastic0
+      - elastic1
+
+  search_blender:
+    container_name: search_blender_container
+    image: search_blender_image
+    volumes:
+      - "./search_blender/src:/app/src"
+      - "./search_blender/config:/app/config"
+      - "./search_blender/logs/:/app/logs"
+    build:
+      context: ./search_blender/
+      dockerfile: Dockerfile
+    networks:
+      - admin_network
+      - http_network
+    ports:
+      - "3000:3000"
+
+  front:
+    container_name: front_container
+    image: front_image
+    build: 
+      context: ./front/
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    restart: on-failure
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/reires/public
+    networks:
+      - http_network
+      - admin_network
+    volumes:
+      - ./front:/var/www/html/reires
+    depends_on:
+      - search_blender
+      - agensgraph
+    links:
+      - search_blender
+
+
+
+  agensbrowser:
+    image: libis-p-services-3.lnx.icts.kuleuven.be:5000/libis/agensbrowser:latest
+    ports:
+      - 8085:8085
+    restart: on-failure
+    networks:
+      - admin_network
+      - http_network
+    volumes:
+      - ./volumes/AgensBrowser/logs:/home/agens/AgensBrowser/logs
+      - ./volumes/AgensBrowser/downloads:/home/agens/AgensBrowser/downloads
+      - ./volumes/AgensBrowser/uploads:/home/agens/AgensBrowser/uploads
+    depends_on:
+      - agensgraph
+    links:
+      - agensgraph      
+
