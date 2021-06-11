@@ -1,0 +1,58 @@
+{
+  "index": {
+    "any": ["any"],
+    "author": ["author"],
+    "title": ["title"],
+    "creator" : ["creator"],
+    "contributor" : ["creator"],
+    "isbn": ["isbn"],
+    "issn": ["issn"],
+    "subject": ["subject"],
+    "publicationdate": ["publicationdate"],
+    "publisher": ["publisher"],
+    "inlanguage": ["language"],
+    "type": ["type"],
+    "provider": ["provider"],
+    "dataset": ["dataset"],
+    "locationcreated": ["publisher"],
+    "digitalrepresentation": ["DigitalRepresentation"]
+  },
+  "sort": {
+    "relevance": {
+        "index": "#SCORE",
+        "order": "DESC"
+    },
+    "date ASC": {
+        "index": "publicationdate",
+        "order": "ASC"
+    },
+    "date DESC": {
+        "index": "publicationdate",
+        "order": "DESC"
+    },
+    "title": {
+        "index": "title",
+        "order": "ASC"
+    },
+    "publicationdate": {
+        "index": "publicationdate",
+        "order": "ASC"
+    },
+    "author": {
+        "index": "author",
+        "order": "ASC"
+    }
+  },
+    "results": {
+      "aggs" : {
+        "publicationdate": "datePublished",
+        "author"         : "author",
+        "type"           : "type",
+        "subjects"       : "subjects",
+        "language"       : "inLanguage",
+        "location"       : "locationCreated",
+        "provider"       : "provider",
+        "dataset"        : "dataset"
+      }
+    }
+}

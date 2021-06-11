@@ -1,0 +1,37 @@
+{
+    "logger_level": "debug",
+    "logger_file": "/app/logs/search_blender_debug.log",
+    "environment": "development",
+    "search_indexes": [
+        "any",
+        "author",
+        "contributor",
+        "creator",
+        "dateCreated",
+        "datePublished",
+        "inLanguage",
+        "isbn",
+        "issn",
+        "language",
+        "locationCreated",
+        "provider",
+        "dataset",
+        "publicationDate",
+        "publisher",
+        "sdDatePublished",
+        "subject",
+        "title",
+        "type",
+        "digitalrepresentation"
+    ],
+    "datamodel_constants": {
+        "prefixid": "REIRES",
+        "persistent_link_template": "https://reiresearch.eu/record/<#record_id>",
+        "sdPublisher": {
+            "@type": "Organization",
+            "name": "ReIReS consortium",
+            "location": "Europe",
+            "@id": "ReIReS_consortium"
+        }
+    }
+}

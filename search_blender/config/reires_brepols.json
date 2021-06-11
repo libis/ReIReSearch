@@ -1,0 +1,10 @@
+{
+    "host": "reires.brepolis.net",
+    "index": "brepols_ir",
+    "port": 443,
+    "path": "/api/Search",
+    "api_key": "api_key_from_brepols",
+    "user_ip": "127.0.0.0",
+    "user_token": "",
+    "user_id": ""
+}

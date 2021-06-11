@@ -1,0 +1,5 @@
+{
+    "brepols": { "index":["^brepols_ir$"] },
+    "elastic": { "index": [ "^reires_*",  "reires_test"] },
+    "elastic_test": { "index": ["^reires_test*"] }
+}

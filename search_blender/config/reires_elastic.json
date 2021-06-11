@@ -1,0 +1,5 @@
+{
+    "host": "reires_es_url",
+    "port": 9200,
+    "es_index": "reires"
+}

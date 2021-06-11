@@ -1,0 +1,20 @@
+{
+    "provider": {
+        "@type": "Organization",
+        "name": "Brepols",
+        "@id": "Brepols"
+    },
+    "dataset": {
+        "@id": "IR",
+        "@type": "Dataset",
+        "name": "Index Religiosus",
+        "url": "https://reiresearch.eu/page/about#IR"
+    },
+    "license": "http://cpps.brepolis.net/ir/introduction.cfm#copyright",
+    "same_as_template": "",
+    "mediaUrlPrefix": "",
+    "metaLanguage": "",
+    "unicode_script": "Latn",
+    "recordLanguage": "",
+    "genericRecordDesc": "Entry from Index Religiosus"
+}

@@ -1,0 +1,8 @@
+FROM crystallang/crystal:0.32.1-build as build
+
+WORKDIR /app
+
+# install shards and keep working in local code !!
+# Deactivate for build for server
+COPY shard.yml ./shard.yml
+RUN shards install

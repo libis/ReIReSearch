@@ -1,0 +1,31 @@
+name: search_blender
+version: 0.1.0
+
+authors:
+  - Mehmet Celik <mehmet@celik.be>
+  - Tom Vanmechelen <tom.vanmechelen@kuleuven.be>
+
+targets:
+  search_blender:
+    main: src/search_blender.cr
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+  
+  pegmatite:
+    github: jemc/crystal-pegmatite
+    branch: master
+
+#  search:
+#    path: ./src/search
+
+  await_async:
+    github: anykeyh/await_async
+    branch: master
+
+  pegasus:
+    github: pawandubey/pegasus
+
+crystal: 0.32.1
+license: MIT

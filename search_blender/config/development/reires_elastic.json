@@ -1,0 +1,5 @@
+{
+    "host": "elastic0",
+    "port": 9200,
+    "es_index": "reires_test"
+}

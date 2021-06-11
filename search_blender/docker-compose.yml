@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  search_blender:
+    container_name: search_blender_container
+    image: search_blender
+    volumes:
+      - "./src:/app/src"
+      - "./config:/app/config"
+      - "./logs:/app/logs"
+    command: "crystal  ./src/search_blender.cr --error-trace"
+    build:
+      context: ./
+      dockerfile: Dockerfile_localhost
+    ports:
+      - 3000:3000
+    networks:
+      - blender
+      #- http_network
+      - admin_network
+
+networks:
+  blender:
+    driver: bridge 
+  http_network:
+    external:
+      name: http_network
+  admin_network:    
+    external:
+      name: code_admin_network
+
+## shards install
+## ./sentry
+# crystal  ./src/search_blender.cr --error-trace
+
+
+# apt-get update; apt-get install curl

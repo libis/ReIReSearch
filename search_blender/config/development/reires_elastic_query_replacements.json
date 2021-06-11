@@ -1,0 +1,7 @@
+[
+    {
+        "source": "{:query_string => {:fields => [\"digitalrepresentation\"], :query => \"true\"}}",
+        "target": "{ \"exists\": { \"field\":  \"associatedMedia.contentUrl\" } }",
+        "type" : "exists"
+    }
+]

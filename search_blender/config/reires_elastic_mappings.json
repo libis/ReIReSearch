@@ -1,0 +1,182 @@
+{
+    "index": {
+        "id": [
+            "_id"
+        ],
+        "any": [
+            "name.@value^2",
+            "about",
+            "description.@value",
+            "author.name.@value",
+            "contributor.name.@value",
+            "publisher.name.@value",
+            "keywords.@value",
+            "_id"
+        ],
+        "title": [
+            "name.@value",
+            "alternateName"
+        ],
+        "author": [
+            "author.name.@value^2",
+            "creator.name.@value",
+            "editor.name.@value",
+            "contributor.name.@value",
+            "illustrator.name.@value",
+            "translator.name.@value"
+        ],
+        "creator": [
+            "author.name.@value^2",
+            "contributor.name.@value"
+        ],
+        "contributor": [
+            "contributor.name.@value.keyword"
+        ],        
+        "subject": [
+            "keywords.@value"
+        ],
+        "isbn": [
+            "isbn"
+        ],
+        "issn": [
+            "issn"
+        ],
+        "creationdate": [
+            "dateCreated_time_frame"
+        ],
+        "publicationdate": [
+            "datePublished_time_frame"
+        ],
+        "datecreated": [
+            "dateCreated"
+        ],
+        "datepublished": [
+            "datePublished"
+        ],
+        "sddatepublished": [
+            "sdDatePublished"
+        ],
+        "locationcreated": [
+            "locationCreated.name.keyword"
+        ],
+        "publisher": [
+            "publisher.name"
+        ],
+        "provider": [
+            "isBasedOn.provider.name.keyword",
+            "isBasedOn.provider.alternateName.keyword"
+        ],
+        "dataset": [
+            "isBasedOn.isPartOf.name"
+        ],
+        "language": [
+            "inLanguage"
+        ],
+        "inlanguage": [
+            "inLanguage"
+        ],
+        "type": [
+            "@type"
+        ],
+        "digitalrepresentation": [
+            "DigitalRepresentation"
+        ]
+    },
+    "sort": {
+        "relevance": {
+            "index": "_score",
+            "order": "desc"
+        },
+        "date ASC": {
+            "index": "datePublished_time_frame_from",
+            "order": "asc"
+        },
+        "date DESC": {
+            "index": "datePublished_time_frame_till",
+            "order": "desc"
+        },
+        "title": {
+            "index": "name.@value.keyword",
+            "order": "asc"
+        },
+        "publicationdate": {
+            "index": "datePublished",
+            "order": "asc"
+        }
+    },
+    "aggs": {
+        "inLanguage": {
+            "terms": {
+                "field": "inLanguage"
+            }
+        },
+        "dateCreated": {
+            "terms": {
+                "size": 200,
+                "field": "dateCreated"
+            }
+        },
+        "datePublished": {
+            "terms": {
+                "field": "datePublished"
+            }
+        },
+        "provider": {
+            "terms": {
+                "field":  "isBasedOn.provider.name.keyword"
+            }
+        },
+        "dataset": {
+            "terms": {
+                "field": "isBasedOn.isPartOf.name.keyword"
+            }
+        },
+        "sdDatePublished": {
+            "terms": {
+                "field": "sdDatePublished"
+            }
+        },
+        "author": {
+            "terms": {
+                "field": "author.name.@value.keyword"
+            }
+        },
+        "contributor": {
+            "terms": {
+                "field": "contributor.name.@value.keyword"
+            }
+        },
+        "locationCreated": {
+            "terms": {
+                "field": "locationCreated.name.keyword"
+            }
+        },
+        "publisher": {
+            "terms": {
+                "field": "publisher.name.keyword"
+            }
+        },
+        "type": {
+            "terms": {
+                "field": "@Type"
+            }
+        },
+        "subjects": {
+            "terms": {
+                "field": "keywords.keyword"
+            }
+        },
+        "min_datePublished": {
+            "min": {
+                "field": "datePublished",
+                "format": "yyyy"
+            }
+        },
+        "max_datePublished": {
+            "max": {
+                "field": "datePublished",
+                "format": "yyyy"
+            }
+        }
+    }
+}

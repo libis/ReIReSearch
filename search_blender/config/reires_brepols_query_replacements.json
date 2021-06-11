@@ -1,0 +1,13 @@
+[
+    {
+        "source": "{:query_string => {:fields => [\"digitalrepresentation\"], :query => \"true\"}}",
+        "target": "{ \"query_string\": { \"fields\": [\"subject\"], \"query\": \"\\\"Return 0 hist because filter on digital representation is not supported\\\"\"}}",
+        "type" : "query_string"
+    },
+    {
+        "source": "{:query_string => {:fields => [\"provider\"], :query => \"\\\"brepols\\\"\"}}",
+        "target": "{ \"query_string\": { \"fields\": [\"provider\"], \"query\": \"\\\"Brepols\\\"\"}}",
+        "type" : "query_string"
+    }
+]
+
