@@ -1,0 +1,27 @@
+version: '3'
+services:
+  front:
+    container_name: front_container
+    image: front_image
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    restart: on-failure
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/reires/public
+#    networks:
+#      - http_network
+#      - admin_network
+    volumes:
+      - ./:/var/www/html/reires
+
+#Docker Networks
+networks:
+  admin_network:
+    external:
+      name: admin_network
+      http_network:
+    external:
+      name: http_network

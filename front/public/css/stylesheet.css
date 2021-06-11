@@ -1,0 +1,267 @@
+
+.links > a {
+    color: #5e4c8b;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.rec_type { 
+    padding:0px; margin:0px ;
+    text-transform: uppercase;
+    font-size:8px;
+    font-weight:Bold
+}
+.rec_name { 
+    padding:0px; margin:0px ;
+    color:#5e4c8b;
+    font-weight:Bold;
+    font-family:Monda;
+    list-style-type:none;
+}
+
+.detail_type { 
+    padding:0px; margin:0px ;
+    text-transform: uppercase;
+    font-size:8px;
+    font-weight:Bold
+    
+}
+
+.detail { 
+    padding:0px; margin:0px ; font-size:12px;color: #636b6f;font-weight:Normal; list-style-type:none
+}
+
+li.detail {
+    color: #58575c
+}
+
+.rec_author { 
+    padding:0px; margin:0px ;list-style-type:none;list-style-type:none;
+}
+.rec_publisher { 
+    padding:0px; margin:0px ;
+    font-style:Italic;
+    list-style-type:none;
+}
+.rec_dataset { 
+    padding:0px; margin:0px ;list-style-type:none;list-style-type:none;font-size:12px
+}
+.centered {
+    align:center;
+}
+
+code {
+    font-family: Courier, 'New Courier', monospace;
+    font-size: 7px; font-weight:Normal
+}
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    font-size: 8px;
+}
+
+
+.facet {
+    font-size:12px; 
+    font-weight:Bold;
+    color:#101010;
+    padding-top:2px;
+}
+
+.bucket {
+    font-size:12px; 
+    font-weight:Normal;
+    color:#101010;
+    list-style:none;
+}
+
+.bottommargin {
+    margin-bottom:12px
+}
+.smallpadding {
+    padding-top:2px;
+    padding-bottom:8px
+}
+.fullwidth {
+    width:100%
+}
+
+.monda {
+    font-family:Monda;
+    color: #6d5b97
+}
+
+.fa-save {
+    color: #6d5b97;
+    font-size:24px
+}
+
+.fa-file {
+    color: #6d5b97;
+    font-size:22px;
+    margin-right:2px
+}
+
+.fa-list-ul {
+    color: #6d5b97;
+    font-size:24px;
+    padding-left:4px
+
+}
+
+.fa-quote-left {
+    color: #6d5b97;
+    cursor:pointer
+}
+
+.fa-envelope {
+    color: #6d5b97;
+    cursor:pointer
+}
+
+.fa-clipboard {
+    color: #6d5b97;
+    cursor:pointer
+}
+
+.fa-folder {
+    color: #6d5b97;
+    cursor:pointer;
+    font-size:24px;
+    padding-left:4px
+}
+
+.fa-trash {
+    color: #6d5b97;
+    cursor:pointer;
+    float:right;
+    padding-left:10px;
+    z-index:100
+}
+
+
+.fa-link {
+    color: #6d5b97;
+    cursor:pointer
+}
+
+.fa-keyboard-o {
+    color: #6d5b97;
+    font-size:22px;
+    padding-top:10px;
+    padding-left:3px;
+    padding-right:15px;
+}
+
+.formtd {
+    padding:2px
+}
+.nomargin {
+
+    margin:0px;
+    
+}
+
+.login {
+    margin-left:25%;
+    margin-top:15px;
+}
+
+.thumbnail {
+    margin-right:8px;
+    width:120px; 
+    float:left;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.preview {
+    margin-right:8px;
+    margin-left:10px;
+    margin-bottom:12px;
+    
+    float:right;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.toolbar {
+    overflow:visible;
+    display:block;
+}
+.externallink {
+    color: #6d5b97;
+    font-weight: bolder;
+}
+
+.externallink:hover {
+    color: Black;
+    text-decoration:underline
+}
+
+.waiting {
+    margin-top:6px
+}
+
+.truncate {
+    width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.scroll { 
+    margin:0px, 0px; 
+    padding-left:15px; 
+    height: 300px; 
+    overflow-x: hidden; 
+    overflow-x: auto; 
+    text-align:justify; 
+} 
+p.subtitle1 {
+    color: #6d5b97;
+    font-size: 20px;
+}
+p.subtitle2 {
+
+    margin-left:30px;
+    margin-top:18px;
+    font-size:18px;
+    color: #6d5b97;
+}
+p.page {
+    margin-bottom:8px;
+    font-family:Monda;
+    font-weight: normal
+}
+ul.page {
+    font-family:Monda;
+    font-weight: normal;
+    margin-bottom:10px;
+    list-style:disc;
+    padding-left:43px
+}
+
+ol.page {
+    font-family:Monda;
+    font-weight: normal;
+    margin-bottom:10px;
+    padding-left:43px
+}
+table.page {
+    margin-bottom:8px;
+    font-family:Monda;
+    font-weight: normal
+}
+table.page tr td {
+    padding-left:8px;
+    padding-right:6px;
+    padding-top:2px;
+    padding-bottom:2px;
+    font-family:Monda;
+    font-weight: normal
+}
