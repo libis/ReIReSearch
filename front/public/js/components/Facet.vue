@@ -18,30 +18,39 @@
             Filters
         </div>
         <div v-if="facets.length>0">
+<!--
+            <div v-for="(facet, index) in facets" v-bind:key="index">
+                <div v-if="facet.buckets.length > 0 && facet.key == 'dataset'" class="box bottommargin smallpadding">
+                    <span v-if="facettranslations[facet.key] != undefined" class="facet monda">{{ facettranslations[facet.key] }} </span> 
+                    <span v-else class="facet monda">{{ facet.key }} </span>
+                    <li class="bucket">
+                        <ul class="bucketitem" v-for="(bucket, idx) in facet.buckets" v-bind:key="idx">
+                            <div  v-if="bucket.key_as_string != undefined">
+                                <input type="checkbox" :value="bucket" v-model="localfilters" :id="bucket.cbvalue" @click="clickcb();"><label :for="bucket.cbvalue" @click="clicklbl();" style="cursor:pointer"> {{ bucket.key_as_string }} <span v-if="bucket.doc_count != undefined">({{ bucket.doc_count }})</span></label>
+                            </div>
+                            <div v-else>
+                                <input type="checkbox" :value="bucket" v-model="localfilters" @click="clickcb();" :id="bucket.cbvalue"><label :for="bucket.cbvalue" @click="clicklbl();" style="cursor:pointer"> {{ bucket.key }} <span v-if="bucket.doc_count != undefined">({{ bucket.doc_count }})</span></label>
+                            </div>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+-->
             <div class="box bottommargin smallpadding">
-                <span class="facet monda">{{ facettranslations['datePublished'] }} </span> 
-                <li class="bucket">
+                <span class="facet monda">{{ facettranslations['datePublished'] }} </span>&nbsp;&nbsp;<span class="facet monda" style="cursor:pointer" @click="toggleopen()"><img :src="chevron" width="12px" align="bottom"></span>
+                <li class="bucket"  v-bind:class="[open ? 'isVisible' : 'isInvisible']">
                     <ul class="bucketitem">From : <input class="input" type="number" ref="datePublished_from" v-model="datePublished_from" :min="min_datePublished" :max="max_datePublished" @change="clickcb();"></ul>
                     <ul class="bucketitem">Until : <input class="input" type="number" ref="datePublished_until" v-model="datePublished_until" :min="min_datePublished" :max="max_datePublished" @change="clickcb();"></ul>
                 </li>
             </div>
         </div>
+
         <div v-for="(facet, index) in facets" v-bind:key="index">
             <div v-if="facet.buckets.length > 0" class="box bottommargin smallpadding">
-                <span v-if="facettranslations[facet.key] != undefined" class="facet monda">{{ facettranslations[facet.key] }} </span> 
-                <span v-else class="facet monda">{{ facet.key }} </span>
-                <li class="bucket">
-                    <ul class="bucketitem" v-for="(bucket, idx) in facet.buckets" v-bind:key="idx">
-                        <div  v-if="bucket.key_as_string != undefined">
-                            <input type="checkbox" :value="bucket" v-model="localfilters" :id="bucket.cbvalue" @click="clickcb();"><label :for="bucket.cbvalue" @click="clicklbl();" style="cursor:pointer"> {{ bucket.key_as_string }} <span v-if="bucket.doc_count != undefined">({{ bucket.doc_count }})</span></label>
-                        </div>
-                        <div v-else>
-                            <input type="checkbox" :value="bucket" v-model="localfilters" @click="clickcb();" :id="bucket.cbvalue"><label :for="bucket.cbvalue" @click="clicklbl();" style="cursor:pointer"> {{ bucket.key }} <span v-if="bucket.doc_count != undefined">({{ bucket.doc_count }})</span></label>
-                        </div>
-                    </ul>
-                </li>
+                <bucket v-bind:buckets="facet.buckets" v-bind:facetkey="facet.key"></bucket>
             </div>
         </div>
+
         <div v-if="facets.length>999999999999">
             <div class="box bottommargin smallpadding">
                 <span class="facet monda">{{ facettranslations['sdDatePublished'] }} </span> 
@@ -75,8 +84,10 @@ module.exports = {
                  labelclicked : false,
                  datePublished_from:-500,
                  datePublished_until:2020,
-                 facettranslations : { "inLanguage":"Language", "datePublished":"Publication date", "dateCreated":"Creationdate", "provider":"Metadata provider", "author":"Author", "contributor":"Contributor", "subjects":"Subjects", "locationCreated":"Creation location", "publisher":"Publisher", "type":"Type", "sdDatePublished":"Publication date of metadata", "dataset":"Dataset", "digitalrepresentation":"Digital Representation"}
-               }
+                 facettranslations : { "inLanguage":"Language", "datePublished":"Publication date", "dateCreated":"Creationdate", "provider":"Metadata provider", "author":"Author", "contributor":"Contributor", "subjects":"Subjects", "locationCreated":"Creation location", "publisher":"Publisher", "type":"Type", "sdDatePublished":"Publication date of metadata", "dataset":"Dataset", "digitalrepresentation":"Digital Representation"},
+                 open:true,
+                 chevron:"/img/arrow_up.png"
+        }
     },
     watch: {
         localfilters: function() {
@@ -127,6 +138,10 @@ module.exports = {
                     break;
                 }
             }
+        },
+        toggleopen() {
+            this.open = !this.open;
+            this.chevron = (this.open?"/img/arrow_up.png":"/img/arrow_dn.png");
         }
     },
     computed: {
@@ -142,6 +157,19 @@ module.exports = {
             }
 
         }        
+    },
+    components: {
+        'bucket': window.httpVueLoader('/js/components/Bucket.vue')
     }
 }
 </script>
+<style scoped>
+.isVisible {
+    visibility: visible;
+    display:inline
+}
+.isInvisible {
+    visibility: hidden;
+    display:none
+}
+</style>
