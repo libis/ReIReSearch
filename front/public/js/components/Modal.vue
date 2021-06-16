@@ -28,7 +28,7 @@
               </div>
             </div>
             <h1 class="title is-5 monda" v-for="name in this.currentrecord._display.name">{{ name }}</h1>
-            <h2 class="title is-7 monda" v-for="alternateName in this.currentrecord._display.alternateName">{{ alternateName }}</h2>
+            <!-- <h2 class="title is-7 monda" v-for="alternateName in this.currentrecord._display.alternateName">{{ alternateName }}</h2> -->
 
             <div class="columns nomargin" v-if="this.currentrecord._display.honorificPrefix !== undefined">
               <div class="column detail is-narrow">Honorific Prefix&nbsp;:&nbsp;</div>

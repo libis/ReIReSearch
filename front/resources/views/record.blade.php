@@ -41,11 +41,11 @@
         <? } 
     } ?>
 
-    <? if (isset($display["alternateName"])) { 
+    <? /* if (isset($display["alternateName"])) { 
         foreach ($display["alternateName"] as $alternateName) { ?>
             <h2 class="title is-7 monda"><?=$alternateName?></h2>
         <? } 
-    } ?>
+    }  */ ?>
 
     <? if (isset($display["source"])) { 
         $out = Array();
