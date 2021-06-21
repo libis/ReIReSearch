@@ -11,7 +11,7 @@ docker-compose run data_collector ruby /app/src/collector.rb ./src/rules/<rules_
 
 ## Agensgraph Loader [README.md](https://github.com/libis/ReIReSearch/tree/main/agensgraph_loader)
 
-- validating shema.org jsn-ld records
+- validating schema.org json-ld records
 - import/export records to and from AgensGraph
 
 ## ES loader [README.md](https://github.com/libis/ReIReSearch/tree/main/es_loader)
