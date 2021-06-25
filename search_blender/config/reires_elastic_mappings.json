@@ -11,6 +11,7 @@
             "contributor.name.@value",
             "publisher.name.@value",
             "keywords.@value",
+            "alternateName",
             "_id"
         ],
         "title": [

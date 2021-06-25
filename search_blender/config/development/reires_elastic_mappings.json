@@ -11,6 +11,7 @@
             "contributor.name.@value",
             "publisher.name",
             "keywords.@value",
+            "alternateName",
             "isBasedOn.isPartOf.name.keyword",
             "isBasedOn.provider.name.keyword",
             "_id"
